@@ -3,6 +3,9 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// 모바일 GPS 위치 데이터를 저장할 변수
+let mobileLocation = { lat: null, lng: null };
+
 // CORS 설정: Netlify에서 오는 요청만 허용
 const corsOptions = {
     origin: 'https://songjinq.netlify.app',  // Netlify 도메인 설정
@@ -32,7 +35,11 @@ app.get('/get-location', (req, res) => {
 app.listen(port, () => {
     console.log(`Server running at port ${port}`);
 });
-app.options('*', cors(corsOptions)); // 모든 경로에 대해 Preflight 요청을 허용
+
+// Preflight 요청 허용 (CORS)
+app.options('*', cors(corsOptions));
+
+// 모든 경로에 대한 기본 헤더 설정
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "https://songjinq.netlify.app"); // Netlify 도메인 허용
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
