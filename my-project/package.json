@@ -1,0 +1,13 @@
+{
+  "name": "my-vercel-server",
+  "version": "1.0.0",
+  "description": "My server running on Vercel",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "cors": "^2.8.5"
+  }
+}
